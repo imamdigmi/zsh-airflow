@@ -1,0 +1,53 @@
+#compdef airflow
+
+typeset -A opt_args
+
+_arguments -C \
+  '1:subcommand:->subcommands' \
+  '*:: :->args' \
+&& ret=0
+
+
+case "$state" in
+  subcommands )
+    local subcommands; subcommands=(
+        "resetdb:Burn down and rebuild the metadata database"
+        "render:Render a task instance's template(s)"
+        "variables:CRUD operations on variables"
+        "delete_user:Delete an account for the Web UI"
+        "connections:List/Add/Delete connections"
+        "create_user:Create an account for the Web UI (FAB-based)"
+        "pause:Pause a DAG"
+        "sync_perm:Update existing role's permissions"
+        "task_failed_deps:Returns the unmet dependencies for a task instance from the perspective of the scheduler"
+        "version:Show the version"
+        "trigger_dag:Trigger a DAG run"
+        "initdb:Initialize the metadata database"
+        "test:Test a task instance"
+        "unpause:Resume a paused DAG"
+        "list_dag_runs:List dag runs given a DAG id"
+        "dag_state:Get the status of a dag run"
+        "run:Run a single task instance"
+        "list_tasks:List the tasks within a DAG"
+        "backfill:Run subsections of a DAG for a specified date range"
+        "list_dags:List all the DAGs"
+        "kerberos:Start a kerberos ticket renewer"
+        "worker:Start a Celery worker node"
+        "webserver:Start a Airflow webserver instance"
+        "flower:Start a Celery Flower"
+        "scheduler:Start a scheduler instance"
+        "task_state:Get the status of a task instance"
+        "pool:CRUD operations on pools"
+        "serve_logs:Serve logs generate by worker"
+        "clear:Clear a set of task instance, as if they never ran"
+        "list_users:List accounts for the Web UI"
+        "next_execution:Get the next execution datetime of a DAG"
+        "upgradedb:Upgrade the metadata database to latest version"
+        "delete_dag:Delete all DB records related to the specified DAG"
+      )
+
+      _describe -t subcommands 'subcommand' subcommands && ret=0
+    ;;
+esac
+
+return 1
