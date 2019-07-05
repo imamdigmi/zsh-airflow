@@ -319,6 +319,10 @@ function _run() {
 }
 
 function _list_tasks() {
+  # To get dag_id from DAG's file
+  # grep -oP '[^#]*with DAG\((dag\s*=\s*)?[\x27\x22]\K\w+' path/to/file/DAG/*.py
+  # or using sed
+  # sed -n '/^[^#]*dag_id *= *[[:punct:]]\([[:alnum:]_]*\).*/s//\1/p' path/to/file/DAG/*.py
   local list_tasks; list_tasks=(
       "-h:Show help"
       "--help:Show help"
